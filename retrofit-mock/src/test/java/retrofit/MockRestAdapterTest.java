@@ -15,6 +15,7 @@ import retrofit.client.Request;
 import retrofit.client.Response;
 import retrofit.http.GET;
 import rx.Observable;
+import rx.functions.Action0;
 import rx.functions.Action1;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
@@ -477,7 +478,7 @@ public class MockRestAdapterTest {
       }
     });
 
-    verify(httpExecutor, atLeastOnce()).execute(any(Runnable.class));
+    verifyZeroInteractions(httpExecutor);
     verifyZeroInteractions(callbackExecutor);
 
     RetrofitError error = errorRef.get();
@@ -518,7 +519,7 @@ public class MockRestAdapterTest {
       }
     });
 
-    verify(httpExecutor, atLeastOnce()).execute(any(Runnable.class));
+    verifyZeroInteractions(httpExecutor);
     verifyZeroInteractions(callbackExecutor);
 
     RetrofitError error = errorRef.get();
